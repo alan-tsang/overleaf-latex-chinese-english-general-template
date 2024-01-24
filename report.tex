@@ -1,0 +1,278 @@
+\documentclass{template} %引用文档类
+
+\usepackage{booktabs}  % 用于创建漂亮的表格，支持三线表等
+\usepackage{setspace}  % 调整文档行距
+\usepackage{amsmath}   % 提供数学公式排版支持
+\usepackage{stfloats}  % 允许在双栏文档中使用跨页的浮动对象
+\usepackage{graphicx}  % 支持插入图片
+\usepackage{datetime}  % 提供日期和时间格式化
+\usepackage{fancyhdr}  % 自定义页眉页脚
+\usepackage{caption}   % 改进浮动体标题的格式,提供\captionof命令
+\usepackage{array}     % 提供更多的表格列格式选项
+\usepackage{float}     % 提供浮动体排版控制
+\usepackage{makecell}  % 允许表格中的单元格内换行
+\usepackage{hyperref}  % 创建超链接，使文档可交互
+\usepackage{multicol}  % 允许文档分为多栏
+\usepackage{titlesec}  % 用于自定义章节标题的样式
+\usepackage[ruled,linesnumbered]{algorithm2e}  % 引入算法环境宏包
+\usepackage{ifthen}    %这个宏包提供逻辑判断命令
+\usepackage{bm} %粗体数学符号的支持
+
+% 自定义宏 等价于C++ define
+\newcommand{\major}{Computer Science and Technology}
+\newcommand{\name}{曾志存}
+\newcommand{\stuid}{Alan Tsang}
+\newcommand{\Name}{Zhicun Zeng} %宏命令，\Name->Name用于英文标题
+\newcommand{\newtitle}{Latex模板}
+
+
+%设置主要字体为TimesNew Roman
+\setmainfont{Times New Roman} 
+% 为章节标题定义新字体 Times New Roman
+\newfontfamily\sectionef{Times New Roman} 
+% 为中文章节标题定义新的楷书字体
+\newCJKfontfamily\sectioncf{kaishu}  
+
+
+% 自定义一级标题的格式
+\titleformat{\section}{   
+  % 左对齐
+  \raggedright           
+  % 字体大小为正常大小，加粗
+  \normalsize\bfseries
+}{}{-1em}{}  % 间距调整，负值表示标题与编号的距离   
+
+% 自定义二级标题格式
+\titleformat*{\subsection}{\raggedright\small\bfseries}
+% 自定义三级标题格式
+\titleformat*{\subsubsection}{\raggedright\small\sectioncf}
+
+% 重新定义 section 编号格式为阿拉伯数字
+% \thesection表示当前 section 的编号格式
+% \arabic表示阿拉伯数字
+\renewcommand\thesection{\arabic{section}}
+
+\setlength{\parindent}{2em}  % 设置段落首行缩进为 2em
+\lstset{language=Matlab} % 设置代码块语言为 Matlab
+
+\newboolean{first} % 引入布尔变量
+\setboolean{first}{true} % 将布尔变量设置为true
+\captionsetup{font={small}} % 设置图表标题的字体为小号
+
+\pagestyle{fancy} % 使用fancy风格的页眉页脚
+
+% 定义左中右页眉
+\lhead{曾志存 / Alan Tsang}
+\chead{未经授权不得传播}
+\rhead{\thepage}
+
+% 一栏图模板
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\linewidth]{name.png}
+%     \caption{引用名}
+%     \label{图注}
+% \end{figure}
+
+% 两栏图，定格在下一页
+% \begin{figure*}[t]
+%     \centering
+%     \includegraphics[width=1.0\linewidth]{pipeline.png}
+%     \caption{引用名}
+%     \label{图注}
+% \end{figure*}
+
+% 一栏图模板，\resizebox可调整大小
+% \begin{table}[H]
+%   \centering
+%   \caption{引用名}
+%   \label{图表}
+%   \small
+%   \resizebox{0.5\textwidth}{!}{
+%   \begin{tabular}{c|c|ccc}
+%     \hline 
+%     column1 & column2 & column3 & column4 & column5 & \\
+%     \hline 
+%     column1 & column2 & column3 & column4 & column5 & \\
+%     column1 & column2 & column3 & column4 & column5 & \\
+%     column1 & column2 & column3 & column4 & column5 & \\
+%     column1 & column2 & column3 & column4 & column5 & \\
+%     \hline 
+%   \end{tabular}}
+% \end{table}
+
+
+\begin{document}
+
+% 报告的标题与基本信息
+\begin{center}
+\zihao{-2} \textbf{\newtitle}\\
+\zihao{4} \kaishu \name \ \ (\stuid)\\
+\zihao{5} \kaishu 大帅比，大帅比，大帅比，2024年1月24日\\中南大学计算机科学与工程学院，湖南省 长沙市 410083\\
+\end{center}
+
+\zihao{-5}\textbf{摘\quad 要:}
+\setstretch{1.3}这个模板是我在实际使用过程中改造的一个overleaf模板，原始模板并没有我这个好用。特点如下：1.有基础的双栏图、单栏图、双栏表、单栏表、单栏算法的模板和使用例子；2.对于中文支持更好；3.支持bib按引用顺序标注文献的序号；4.使用单栏的时候可能存在上下文空白较多的问题，建议多写点字填满，暂未找到好的解决方法。
+
+\zihao{-5}\textbf{关键词：}latex模板；latex模板；latex模板；
+~\\
+
+\begin{center}
+	\zihao{3} \textbf{Latex Template}\\
+	\zihao{5} \Name\quad (\stuid)\\
+	\zihao{5} handsome boy；handsome boy；handsome boy； January 24, 2024 \\ School of Computer Science and Engineering, Central South University, Changsha 410083, China
+\end{center}
+
+\zihao{5}\textbf{Abstract：}
+\setstretch{1.3}this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;this is a demo text;
+
+\zihao{5}\textbf{Keywords: }latex template；latex template；latex template；
+
+% \begin{multicols}{num} 
+% 用于实现多栏排版。num 参数表示希望分为多少列，可以是任意正整数。
+\begin{multicols}{2}
+
+    \section{引言}
+这是一段latex示例文字\cite{reddy2013polypharmacology}，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+
+这是一段latex示例文字\cite{li2020learn}，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+
+
+    \section{第二部分}
+这是一段latex示例文字\cite{reddy2013polypharmacology}，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+
+这是一段latex示例文字\cite{li2020learn}，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+    
+        \subsection{这是二级标题}
+        \begin{itemize}
+        \item 这是一段latex示例文字\cite{reddy2013polypharmacology}，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+
+        \item 这是一段latex示例文字\cite{reddy2013polypharmacology}，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+        \end{itemize}
+        
+    \section{图、表、算法等模板}
+
+\subsection{算法}
+算法\ref{alg:algorithm1}。
+
+% 双栏目使用 [H] 可以强制将浮动体放置在代码所在位置，而不受浮动机制的调整影响。
+% 手动添加算法上下的行间距,可能有改进方法
+\vspace{0.5em}
+\begin{algorithm}[H]
+	\caption{算法框架}
+	\label{alg:algorithm1}
+	\KwIn{训练集: $p(\mathcal{T})$; 测试集: $\mathcal{T}_{mt}$;学习率: $\alpha_{2}$.}
+	\KwOut{结果 $\mathcal{T}_{mt}$.}  
+	\BlankLine
+        随机初始化 $\bm{\theta}$;
+        
+	
+	\While{\textnormal{不收敛}}{
+		\color{red}从训练集中进行采样$\mathcal{T}_{i} \sim p(\mathcal{T})$; \color{black}
+		
+		\ForEach{$\mathcal{T}_{i}$中的任务}{
+		      使用 $\mathcal{S}_{i}$计算        $\mathcal{L}_{\mathcal{T}_{i}}\left(f_{\bm{\theta}}\right)$ ;
+		      计算学习后参数$\bm{{\theta}^{\prime}_{i}}$;
+			
+			使用 $\mathcal{Q}_{i}$计算$\mathcal{L}_{\mathcal{T}_{i}}\left(f_{\bm{{\theta}_{i}^{\prime}}}\right)$ ;
+		}
+		更新 $\bm{\theta}$; 
+	}
+	
+	使用支持向量集 $\mathcal{T}_{mt}$，计算学习后的参数 $\bm{{\theta}^{\prime}_{mt}}$ ; 
+	
+	使用模型$f_{\bm{{\theta}_{mt}^{\prime}}}$来预测查询集$\mathcal{T}_{mt}$中元素的标签.
+
+\end{algorithm}
+% 手动添加算法上下的行间距，可能有改进方法
+\vspace{0.5em}
+
+    \begin{enumerate}
+        \item 有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；
+        \item 有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；
+        \item 有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；有序列表；
+
+\subsection{数学公式}
+公式\eqref{公式1}所示
+
+公式\eqref{公式2}所示
+\begin{equation}
+\label{公式1}
+    E_j(A, B)=\frac{A * B}{\|A\|^2+\|B\|^2-A * B}
+\end{equation}
+其中 $A、B$ 分别表示为两个向量, 集合中每个元素表示为向量中的一个维度, 在每个维度上, 取值通常是 $[0,1]$ 之间的值, $A\cdot B$表示向量乘积, $\|A\|^{\wedge} 2$ 表示向量的模, 即
+\begin{equation}
+\label{公式2}
+    \|A\|^2=\sqrt{\sum_{i=1}^n A_i^2}
+\end{equation}
+
+    \end{enumerate}
+
+
+\subsection{图}
+图\ref{图注}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{demo.jpg}
+    \caption{引用名}
+    \label{图注}
+\end{figure}
+
+
+% 插入跨栏图片时，结束双栏环境，否则figure、tabble都不生效
+% 并且浮动环境的htbp全部不生效
+% 跨栏表格同理
+\end{multicols}
+
+
+跨栏图\ref{图注2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{demo.jpg}
+    \caption{引用名}
+    \label{图注2}
+\end{figure}
+
+\begin{multicols}{2}
+
+\subsection{代码块}
+\begin{lstlisting}[language=Python, caption=示例代码, label=code:example]
+def hello_world():
+    print("Hello, world!")
+
+# 调用函数
+hello_world()
+\end{lstlisting}
+
+\subsection{表}
+这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字，这是一段latex示例文字。
+表\ref{表注}
+% 一栏图模板，\resizebox可调整大小
+\begin{table}[H]
+  \centering
+  \caption{引用名}
+  \label{表注}
+  \small
+  \resizebox{0.5\textwidth}{!}{
+  \begin{tabular}{c|c|ccc}
+      \hline 
+      列1 & 列2 & 列3 & 列4 & 列5 \\
+      \hline 
+      数据1 & 数据2 & 数据3 & 数据4 & 数据5 \\
+      数据1 & 数据2 & 数据3 & 数据4 & 数据5 \\
+      数据1 & 数据2 & 数据3 & 数据4 & 数据5 \\
+      数据1 & 数据2 & 数据3 & 数据4 & 数据5 \\
+      数据1 & 数据2 & 数据3 & 数据4 & 数据5 \\
+      \hline 
+  \end{tabular}}
+\end{table}
+    
+    % 引用
+    % unsrt按照引用顺序排序
+    \bibliographystyle{unsrt}
+    \bibliography{demo.bib}
+    
+    \end{multicols}
+    
+
+\end{document}
