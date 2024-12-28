@@ -1,12 +1,14 @@
-\documentclass{template} %引用文档类
+%!TEX program = xelatex
+\documentclass{template.cls} %引用文档类
 
 \usepackage{booktabs}  % 用于创建漂亮的表格，支持三线表等
 \usepackage{setspace}  % 调整文档行距
+\usepackage{xeCJK} % xelatex环境包，中文支持
 \usepackage{amsmath}   % 提供数学公式排版支持
 \usepackage{stfloats}  % 允许在双栏文档中使用跨页的浮动对象
 \usepackage{graphicx}  % 支持插入图片
 \usepackage{datetime}  % 提供日期和时间格式化
-\usepackage{fancyhdr}  % 自定义页眉页脚 
+\usepackage{fancyhdr}  % 自定义页眉页脚
 \usepackage{caption}   % 改进浮动体标题的格式,提供\captionof命令
 \usepackage{array}     % 提供更多的表格列格式选项
 \usepackage{float}     % 提供浮动体排版控制
